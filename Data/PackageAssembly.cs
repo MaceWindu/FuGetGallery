@@ -31,7 +31,7 @@ namespace FuGetGallery
         
         public bool IsBuildAssembly => ArchiveEntry.FullName.StartsWith ("build/", StringComparison.InvariantCultureIgnoreCase);
 
-        public bool IsPublic => Definition.Modules.Any (m => m.Types.Any (t => t.IsPublic));
+        public bool IsPublic => Definition?.Modules.Any (m => m.Types.Any (t => t.IsPublic)) == true;
 
         public IEnumerable<TypeDefinition> PublicTypes => Definition.Modules.SelectMany (m => m.Types.Where (t => t.IsPublic)).OrderBy (x => x.FullName);
 
